@@ -47,6 +47,16 @@ export const countryInfo: CountryInfo = {
     flagImage: '',
     mapImage: getMapImagePath('th'),
   },
+  it: {
+    countryName: 'Italy',
+    flagImage: '',
+    mapImage: getMapImagePath('it'),
+  },
+  au: {
+    countryName: 'Australia',
+    flagImage: '',
+    mapImage: getMapImagePath('au'),
+  },
 };
 
 export const gameDataOptions: GameDataOption[] = [
@@ -81,5 +91,17 @@ export const gameDataOptions: GameDataOption[] = [
   {
     countryCode: 'th',
     landmarkName: 'wat arun',
+  },
+  {
+    countryCode: 'it',
+    landmarkName: 'leaning tower of pisa',
+  },
+  {
+    countryCode: 'us',
+    landmarkName: 'golden gate bridge',
+  },
+  {
+    countryCode: 'au',
+    landmarkName: 'sydney opera house',
   },
 ];
