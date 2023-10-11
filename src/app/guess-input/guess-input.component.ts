@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
         class="input input-bordered w-full max-w-xs"
         [(ngModel)]="guess"
         name="guess"
+        autocomplete="off"
       />
       <button class="btn btn-primary">Guess</button>
     </form>
@@ -35,6 +36,7 @@ export class GuessInputComponent {
 
   onGuess(event: Event) {
     event.preventDefault();
+    if (!this.guess) return;
     this.guessSubmitted.emit(this.guess);
     this.guess = '';
   }

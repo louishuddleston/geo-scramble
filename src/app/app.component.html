@@ -16,6 +16,7 @@
     <app-guess-input
       (guessSubmitted)="onGuessSubmitted($event)"
     ></app-guess-input>
+    <p>Guesses: {{ guesses.length }}/6</p>
     <app-guess-list
       [guesses]="guesses"
       [correctGuess]="currentGameData?.landmarkName || ''"
