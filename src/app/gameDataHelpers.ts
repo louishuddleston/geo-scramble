@@ -57,6 +57,36 @@ export const countryInfo: CountryInfo = {
     flagImage: '',
     mapImage: getMapImagePath('au'),
   },
+  my: {
+    countryName: 'Malaysia',
+    flagImage: '',
+    mapImage: getMapImagePath('my'),
+  },
+  jp: {
+    countryName: 'Japan',
+    flagImage: '',
+    mapImage: getMapImagePath('jp'),
+  },
+  za: {
+    countryName: 'South Africa',
+    flagImage: '',
+    mapImage: getMapImagePath('za'),
+  },
+  in: {
+    countryName: 'India',
+    flagImage: '',
+    mapImage: getMapImagePath('in'),
+  },
+  mx: {
+    countryName: 'Mexico',
+    flagImage: '',
+    mapImage: getMapImagePath('mx'),
+  },
+  cn: {
+    countryName: 'China',
+    flagImage: '',
+    mapImage: getMapImagePath('cn'),
+  },
 };
 
 export const gameDataOptions: GameDataOption[] = [
@@ -103,5 +133,45 @@ export const gameDataOptions: GameDataOption[] = [
   {
     countryCode: 'au',
     landmarkName: 'sydney opera house',
+  },
+  {
+    countryCode: 'my',
+    landmarkName: 'petronas towers',
+  },
+  {
+    countryCode: 'jp',
+    landmarkName: 'mount fuji',
+  },
+  {
+    countryCode: 'za',
+    landmarkName: 'table mountain',
+  },
+  {
+    countryCode: 'in',
+    landmarkName: 'taj mahal',
+  },
+  {
+    countryCode: 'mx',
+    landmarkName: 'chichen itza',
+  },
+  {
+    countryCode: 'cn',
+    landmarkName: 'great wall of china',
+  },
+  {
+    countryCode: 'in',
+    landmarkName: 'lotus temple',
+  },
+  {
+    countryCode: 'us',
+    landmarkName: 'hollywood sign',
+  },
+  {
+    countryCode: 'cn',
+    landmarkName: 'forbidden city',
+  },
+  {
+    countryCode: 'mx',
+    landmarkName: 'angel of independence',
   },
 ];
