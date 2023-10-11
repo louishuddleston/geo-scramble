@@ -2,19 +2,18 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-// TODO: fix form submission
-
 @Component({
   selector: 'app-guess-input',
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <form class="flex" (submit)="onGuess()">
+    <form class="flex" (submit)="onGuess($event)">
       <input
         type="text"
         placeholder="Guess here"
         class="input input-bordered w-full max-w-xs"
         [(ngModel)]="guess"
+        name="guess"
       />
       <button class="btn btn-primary">Guess</button>
     </form>
@@ -34,8 +33,9 @@ export class GuessInputComponent {
   @Output() guessSubmitted = new EventEmitter<string>();
   guess: string = '';
 
-  onGuess() {
-    this.guessSubmitted.emit(this.guess.toLowerCase());
+  onGuess(event: Event) {
+    event.preventDefault();
+    this.guessSubmitted.emit(this.guess);
     this.guess = '';
   }
 }

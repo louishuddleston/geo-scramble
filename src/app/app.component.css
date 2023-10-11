@@ -1,5 +1,10 @@
 main {
-  padding: 0 30%;
+  margin: 0 1rem;
+  max-width: 800px;
+}
+.main-container {
+  display: flex;
+  justify-content: center;
 }
 .map-image {
   width: 300px;

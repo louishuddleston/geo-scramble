@@ -14,8 +14,16 @@ import { CommonModule } from '@angular/common';
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let guess of guesses" class="hover">
-          <th>{{ guess }}</th>
+        <tr
+          *ngFor="let guess of guesses"
+          [ngClass]="{
+            'bg-success': guess === correctGuess,
+            hover: guess !== correctGuess
+          }"
+        >
+          <th [ngClass]="{ 'text-indigo-950': guess === correctGuess }">
+            {{ guess }}
+          </th>
           <th *ngIf="guess !== correctGuess">❌</th>
           <th *ngIf="guess === correctGuess">✅</th>
         </tr>
@@ -26,6 +34,9 @@ import { CommonModule } from '@angular/common';
     `
       :host {
         width: 100%;
+      }
+      th {
+        width: 50%;
       }
     `,
   ],

@@ -18,17 +18,6 @@ export class AppComponent implements OnInit {
     this.loadGame();
   }
 
-  // scrambleWord(word: string) {
-  //   const wordArray = word.split('');
-  //   for (let i = wordArray.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * i);
-  //     const temp = wordArray[i];
-  //     wordArray[i] = wordArray[j];
-  //     wordArray[j] = temp;
-  //   }
-  //   return wordArray.join('');
-
-  // }
   scrambleWord(word: string) {
     function shuffleWords(word: string): string {
       const words = word.split(' ');
@@ -63,6 +52,7 @@ export class AppComponent implements OnInit {
 
   onGuessSubmitted(guess: string) {
     console.log(`guess submitted: ${guess}`);
+    guess = guess.toLowerCase().replace('the ', '');
     this.guesses.push(guess);
     if (guess === this.currentGameData?.landmarkName) {
       console.log('Correct!');
