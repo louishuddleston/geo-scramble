@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
 
   onGuessSubmitted(guess: string) {
     console.log(`guess submitted: ${guess}`);
-    guess = guess.toLowerCase().replace('the ', '');
+    guess = guess.toLowerCase().replace('the ', '').trim();
     this.guesses.push(guess);
     if (guess === this.currentGameData?.landmarkName) {
       console.log('Correct!');
