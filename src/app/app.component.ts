@@ -1,51 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { gameDataOptions, countryInfo } from './gameDataHelpers';
-import scrambleWords from 'src/utils/scrambleWords';
+import { Component } from '@angular/core';
+import { countryInfo } from './gameDataHelpers';
+import { GameStateService } from './services/game-state.service';
+import { take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  title = 'geo-scramble';
+export class AppComponent {
   countryInfo = countryInfo;
-  currentGameData?: (typeof gameDataOptions)[0] & {
-    scrambledLandmarkName: string;
-    status: 'correct' | 'incorrect' | 'active';
-  };
-  guesses: string[] = [];
+  gameState$: GameStateService['gameState$'];
 
-  ngOnInit() {
-    this.loadGame();
-  }
-
-  loadGame() {
-    // pick a random game option from the array and save it to currentGameData
-    const randomIndex = Math.floor(Math.random() * gameDataOptions.length);
-    this.currentGameData = {
-      ...gameDataOptions[randomIndex],
-      scrambledLandmarkName: scrambleWords(
-        gameDataOptions[randomIndex].landmarkName
-      ),
-      status: 'active',
-    };
-
-    console.log(this.currentGameData);
+  constructor(private gameStateService: GameStateService) {
+    this.gameState$ = gameStateService.getGameState();
   }
 
   onGuessSubmitted(guess: string) {
-    if (!this.currentGameData || this.currentGameData.status !== 'active')
-      return;
-    console.log(`guess submitted: ${guess}`);
-    guess = guess.toLowerCase().replace('the ', '').trim();
-    this.guesses.push(guess);
-    if (guess === this.currentGameData?.landmarkName) {
-      console.log('Correct!');
-      this.currentGameData.status = 'correct';
-    }
-    if (this.guesses.length >= 6) {
-      this.currentGameData.status = 'incorrect';
-    }
+    const normalizedGuess = guess.toLowerCase().replace('the ', '').trim();
+
+    this.gameStateService.gameState$
+      .pipe(
+        take(1),
+        tap((gameState) => {
+          if (gameState.status !== 'active') {
+            return;
+          }
+
+          const updatedState = {
+            ...gameState,
+            guesses: [...gameState.guesses, normalizedGuess],
+          };
+
+          if (normalizedGuess === gameState.landmarkName) {
+            updatedState.status = 'correct';
+          } else if (updatedState.guesses.length >= 6) {
+            updatedState.status = 'incorrect';
+          }
+
+          this.gameStateService.setGameState(updatedState);
+        })
+      )
+      .subscribe();
+  }
+
+  newGame() {
+    this.gameStateService.resetGame();
   }
 }

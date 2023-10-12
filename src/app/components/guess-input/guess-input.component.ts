@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { GameStateService } from 'src/app/services/game-state.service';
 
 @Component({
   selector: 'app-guess-input',
@@ -15,8 +16,14 @@ import { FormsModule } from '@angular/forms';
         [(ngModel)]="guess"
         name="guess"
         autocomplete="off"
+        [disabled]="(gameState$ | async)?.status !== 'active'"
       />
-      <button class="btn btn-primary">Guess</button>
+      <button
+        class="btn btn-primary"
+        [disabled]="(gameState$ | async)?.status !== 'active'"
+      >
+        Guess
+      </button>
     </form>
   `,
   styles: [
@@ -30,6 +37,11 @@ import { FormsModule } from '@angular/forms';
 export class GuessInputComponent {
   @Output() guessSubmitted = new EventEmitter<string>();
   guess: string = '';
+  gameState$: GameStateService['gameState$'];
+
+  constructor(private gameStateService: GameStateService) {
+    this.gameState$ = gameStateService.getGameState();
+  }
 
   onGuess(event: Event) {
     event.preventDefault();
