@@ -33,10 +33,10 @@ import { CommonModule } from '@angular/common';
   styles: [
     `
       :host {
-        width: 100%;
+        @apply w-full;
       }
       th {
-        width: 50%;
+        @apply w-1/2;
       }
     `,
   ],

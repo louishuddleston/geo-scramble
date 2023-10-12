@@ -22,10 +22,7 @@ import { FormsModule } from '@angular/forms';
   styles: [
     `
       :host {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin: 1rem 0;
+        @apply my-4;
       }
     `,
   ],
