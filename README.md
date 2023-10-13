@@ -1,6 +1,10 @@
 # GeoScramble
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+The aim of the game is to guess the famous landmark from the scrambled
+words. You can use the outline of the respective country to help you make
+your guess.
+
+https://geoscramble.vercel.app/
 
 ## Development server
 
