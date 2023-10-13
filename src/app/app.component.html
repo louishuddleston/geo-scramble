@@ -1,24 +1,31 @@
 <div class="main-container" *ngIf="gameState$ | async as gameState">
   <main class="flex items-center flex-col pb-7">
     <app-top-nav></app-top-nav>
+
     <img
       *ngIf="gameState.countryCode"
       src="{{ countryInfo[gameState.countryCode].mapImage }}"
       alt="map of {{ countryInfo[gameState.countryCode].countryName }}"
       class="map-image"
     />
+
     <div class="my-4 text-center">
       <h1 class="text-xl">Scrambled Landmark Name:</h1>
       <h1 class="text-5xl text-blue-300">
         {{ gameState.scrambledLandmarkName }}
       </h1>
     </div>
+
     <app-guess-input
       (guessSubmitted)="onGuessSubmitted($event)"
     ></app-guess-input>
+
     <p>Guesses: {{ gameState.guesses.length }}/6</p>
+
     <app-guess-list></app-guess-list>
+
     <button class="btn btn-warning mt-4" (click)="newGame()">New Game</button>
+
     <h2 class="mt-10 mb-3 text-xl">How to play:</h2>
     <p class="text-center">
       The goal of the game is to guess the famous landmark from the scrambled
