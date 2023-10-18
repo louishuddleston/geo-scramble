@@ -28,6 +28,12 @@
       Correct answer: {{ gameState.landmarkName }}
     </p>
 
+    <div *ngIf="gameState.status !== 'active'" class="text-center">
+      <h2 class="mt-10 mb-3 text-xl">Landmark Description:</h2>
+      <p>
+        {{ gameState.description }}
+      </p>
+    </div>
     <h2 class="mt-10 mb-3 text-xl">How to play:</h2>
     <p class="text-center">
       The aim of the game is to guess the famous landmark from the scrambled
