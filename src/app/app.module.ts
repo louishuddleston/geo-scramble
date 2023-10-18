@@ -6,6 +6,7 @@ import { GuessInputComponent } from './components/guess-input/guess-input.compon
 import { GuessListComponent } from './components/guess-list/guess-list.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { ShareButtonComponent } from './components/share-button/share-button.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { ShareButtonComponent } from './components/share-button/share-button.com
     GuessListComponent,
     TopNavComponent,
     ShareButtonComponent,
+    ModalComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
