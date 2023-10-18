@@ -24,7 +24,9 @@
 
     <app-guess-list></app-guess-list>
 
-    <button class="btn btn-warning mt-4" (click)="newGame()">New Game</button>
+    <p *ngIf="gameState.status === 'incorrect'" class="text-success text-lg">
+      Correct answer: {{ gameState.landmarkName }}
+    </p>
 
     <h2 class="mt-10 mb-3 text-xl">How to play:</h2>
     <p class="text-center">
