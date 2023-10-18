@@ -1,4 +1,5 @@
 export interface GameState {
+  date: string;
   countryCode: string;
   landmarkName: string;
   description: string;

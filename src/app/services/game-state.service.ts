@@ -13,9 +13,10 @@ export class GameStateService {
   public readonly gameState$: Observable<GameState>;
 
   constructor() {
-    const savedState = localStorage.getItem('gameState');
+    const savedState = JSON.parse(localStorage.getItem('gameState') || 'null');
+    const dateString = new Date().toISOString().split('T')[0];
     this.gameState = new BehaviorSubject<GameState>(
-      savedState ? JSON.parse(savedState) : this.getNewGameData()
+      savedState?.date === dateString ? savedState : this.getNewGameData()
     );
     this.gameState$ = this.gameState.asObservable();
   }
@@ -36,6 +37,7 @@ export class GameStateService {
       ),
       status: 'active',
       guesses: [],
+      date: new Date().toISOString().split('T')[0],
     } as GameState;
   }
 
