@@ -13,7 +13,10 @@ export class GameStateService {
   public readonly gameState$: Observable<GameState>;
 
   constructor() {
-    this.gameState = new BehaviorSubject<GameState>(this.getNewGameData());
+    const savedState = localStorage.getItem('gameState');
+    this.gameState = new BehaviorSubject<GameState>(
+      savedState ? JSON.parse(savedState) : this.getNewGameData()
+    );
     this.gameState$ = this.gameState.asObservable();
   }
 
@@ -37,7 +40,9 @@ export class GameStateService {
   }
 
   resetGame() {
-    this.gameState.next(this.getNewGameData());
+    const newState = this.getNewGameData();
+    this.gameState.next(newState);
+    localStorage.setItem('gameState', JSON.stringify(newState));
   }
 
   getGameState() {
@@ -46,5 +51,6 @@ export class GameStateService {
 
   setGameState(gameState: GameState) {
     this.gameState.next(gameState);
+    localStorage.setItem('gameState', JSON.stringify(gameState));
   }
 }
