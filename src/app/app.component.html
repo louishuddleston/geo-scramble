@@ -28,6 +28,8 @@
       Correct answer: {{ gameState.landmarkName }}
     </p>
 
+    <app-share-button *ngIf="gameState.status !== 'active'"></app-share-button>
+
     <div *ngIf="gameState.status !== 'active'" class="text-center">
       <h2 class="mt-10 mb-3 text-xl">Landmark Description:</h2>
       <p>
