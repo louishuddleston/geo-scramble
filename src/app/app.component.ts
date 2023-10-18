@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { countryInfo } from './gameDataHelpers';
 import { GameStateService } from './services/game-state.service';
 import { take, tap } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { take, tap } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   countryInfo = countryInfo;
   gameState$: GameStateService['gameState$'];
   showInfoModal = false;
@@ -18,6 +18,13 @@ export class AppComponent {
 
   constructor(private gameStateService: GameStateService) {
     this.gameState$ = gameStateService.getGameState();
+  }
+
+  ngOnInit() {
+    if (!localStorage.getItem('visited')) {
+      this.showInfoModal = true;
+      localStorage.setItem('visited', 'true');
+    }
   }
 
   onGuessSubmitted(guess: string) {
