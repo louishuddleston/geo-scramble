@@ -17,7 +17,10 @@ export class AppComponent {
   }
 
   onGuessSubmitted(guess: string) {
-    const normalizedGuess = guess.toLowerCase().replace('the ', '').trim();
+    const normalizedGuess = guess
+      .toLowerCase()
+      .replace(/^the\s+/, '')
+      .trim();
 
     this.gameStateService.gameState$
       .pipe(
