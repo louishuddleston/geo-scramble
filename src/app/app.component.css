@@ -1,6 +1,7 @@
 main {
   margin: 0 1rem;
   max-width: 800px;
+  flex: 1;
 }
 .main-container {
   display: flex;
