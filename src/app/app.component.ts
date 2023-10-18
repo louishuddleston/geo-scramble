@@ -11,6 +11,9 @@ import { take, tap } from 'rxjs/operators';
 export class AppComponent {
   countryInfo = countryInfo;
   gameState$: GameStateService['gameState$'];
+  FEATURE_FLAG_DAILY_GAME = JSON.parse(
+    process.env['FEATURE_FLAG_DAILY_GAME'] || 'true'
+  );
 
   constructor(private gameStateService: GameStateService) {
     this.gameState$ = gameStateService.getGameState();

@@ -3,6 +3,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { GameState } from '../models/game-state.model';
 import { gameDataOptions } from '../gameDataHelpers';
 import scrambleWords from 'src/utils/scrambleWords';
+import dateSeededRandom from 'src/utils/dateSeededRandom';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,18 @@ export class GameStateService {
   }
 
   private getNewGameData() {
-    const randomIndex = Math.floor(Math.random() * gameDataOptions.length);
+    const FEATURE_FLAG_DAILY_GAME = JSON.parse(
+      process.env['FEATURE_FLAG_DAILY_GAME'] || 'true'
+    );
+
+    const index = FEATURE_FLAG_DAILY_GAME
+      ? dateSeededRandom(gameDataOptions.length)
+      : Math.floor(Math.random() * gameDataOptions.length);
     return {
-      ...gameDataOptions[randomIndex],
+      ...gameDataOptions[index],
       scrambledLandmarkName: scrambleWords(
-        gameDataOptions[randomIndex].landmarkName
+        gameDataOptions[index].landmarkName,
+        FEATURE_FLAG_DAILY_GAME
       ),
       status: 'active',
       guesses: [],
