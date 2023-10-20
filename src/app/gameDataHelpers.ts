@@ -281,8 +281,8 @@ export const gameDataOptions: GameDataOption[] = [
   },
   {
     countryCode: 'ma',
-    landmarkName: 'jemaa el-fnaa',
+    landmarkName: 'hassan ii mosque',
     description:
-      'Jemaa el-Fnaa is a square and market in Marrakesh, Morocco. It is a vibrant and lively place known for its street performances and market stalls.',
+      "The Hassan II Mosque is a mosque in Casablanca, Morocco. It is the largest functioning mosque in Africa and is the 14th largest in the world. Its minaret is the world's second tallest minaret at 210 metres.",
   },
 ];
