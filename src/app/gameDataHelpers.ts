@@ -118,6 +118,41 @@ export const countryInfo: CountryInfo = {
     flagImage: '',
     mapImage: getMapImagePath('ma'),
   },
+  kh: {
+    countryName: 'Cambodia',
+    flagImage: '',
+    mapImage: getMapImagePath('kh'),
+  },
+  pe: {
+    countryName: 'Peru',
+    flagImage: '',
+    mapImage: getMapImagePath('pr'),
+  },
+  eg: {
+    countryName: 'Egypt',
+    flagImage: '',
+    mapImage: getMapImagePath('eg'),
+  },
+  gr: {
+    countryName: 'Greece',
+    flagImage: '',
+    mapImage: getMapImagePath('gr'),
+  },
+  jo: {
+    countryName: 'Jordan',
+    flagImage: '',
+    mapImage: getMapImagePath('jo'),
+  },
+  vn: {
+    countryName: 'Vietnam',
+    flagImage: '',
+    mapImage: getMapImagePath('vn'),
+  },
+  ca: {
+    countryName: 'Canada',
+    flagImage: '',
+    mapImage: getMapImagePath('ca'),
+  },
 };
 
 // TODO: internationalization
@@ -284,5 +319,113 @@ export const gameDataOptions: GameDataOption[] = [
     landmarkName: 'hassan ii mosque',
     description:
       "The Hassan II Mosque is a mosque in Casablanca, Morocco. It is the largest functioning mosque in Africa and is the 14th largest in the world. Its minaret is the world's second tallest minaret at 210 metres.",
+  },
+  {
+    countryCode: 'it',
+    landmarkName: 'colosseum',
+    description:
+      'The Colosseum is an oval amphitheater in Rome, Italy. It is the largest ancient amphitheater ever built and is considered one of the greatest works of Roman architecture and engineering.',
+  },
+  {
+    countryCode: 'kh',
+    landmarkName: 'angkor wat',
+    description:
+      'Angkor Wat is a temple complex in Cambodia and the largest religious monument in the world. It was originally constructed as a Hindu temple dedicated to the god Vishnu for the Khmer Empire.',
+  },
+  {
+    countryCode: 'gb',
+    landmarkName: 'london eye',
+    description:
+      'The London Eye is a giant Ferris wheel on the South Bank of the River Thames in London, England. It is Europe’s tallest Ferris wheel and the most popular paid tourist attraction in the United Kingdom.',
+  },
+  {
+    countryCode: 'us',
+    landmarkName: 'mount rushmore',
+    description:
+      'Mount Rushmore National Memorial is a sculpture carved into the granite face of Mount Rushmore near Keystone, South Dakota. It features 60-foot sculptures of the heads of four United States presidents: George Washington, Thomas Jefferson, Theodore Roosevelt, and Abraham Lincoln.',
+  },
+  {
+    countryCode: 'us',
+    landmarkName: 'seattle space needle',
+    description:
+      'The Space Needle is an observation tower in Seattle, Washington. It is a symbol of Seattle and is a popular tourist attraction.',
+  },
+  {
+    countryCode: 'pe',
+    landmarkName: 'machu picchu',
+    description:
+      'Machu Picchu is an Incan citadel set high in the Andes Mountains in Peru. It is an iconic symbol of the Incan Empire and a UNESCO World Heritage site.',
+  },
+  {
+    countryCode: 'eg',
+    landmarkName: 'pyramids of giza',
+    description:
+      'The Pyramids of Giza are ancient monuments in Cairo, Egypt. They are the only remaining Wonder of the Ancient World.',
+  },
+  {
+    countryCode: 'gr',
+    landmarkName: 'acropolis',
+    description:
+      'The Acropolis of Athens is an ancient citadel located on a rocky outcrop above the city of Athens, Greece. It is a UNESCO World Heritage site and contains several ancient buildings of great architectural and historic significance.',
+  },
+  {
+    countryCode: 'jo',
+    landmarkName: 'petra',
+    description:
+      'Petra is a historical and archaeological city in southern Jordan. It is famous for its rock-cut architecture and water conduit system.',
+  },
+  {
+    countryCode: 'vn',
+    landmarkName: 'ha long bay',
+    description:
+      'Ha Long Bay is a UNESCO World Heritage Site and popular travel destination in Quảng Ninh Province, Vietnam. It features thousands of limestone karsts and isles in various shapes and sizes.',
+  },
+  {
+    countryCode: 'ca',
+    landmarkName: 'cn tower',
+    description:
+      'The CN Tower is a 553.3 m-high concrete communications and observation tower in Toronto, Ontario, Canada. It is a symbol of the city and a popular tourist attraction.',
+  },
+  {
+    countryCode: 'ae',
+    landmarkName: 'burj khalifa',
+    description:
+      'The Burj Khalifa is a skyscraper in Dubai, United Arab Emirates. It is the tallest structure and building in the world and is a symbol of Dubai.',
+  },
+  {
+    countryCode: 'au',
+    landmarkName: 'great barrier reef',
+    description:
+      'The Great Barrier Reef is the world’s largest coral reef system composed of over 2,900 individual reefs and 900 islands stretching for over 2,300 kilometres over an area of approximately 344,400 square kilometres.',
+  },
+  {
+    countryCode: 'au',
+    landmarkName: 'uluru',
+    description:
+      'Uluru, also known as Ayers Rock, is a large sandstone rock formation in the southern part of the Northern Territory in central Australia. It is a sacred site for the Aboriginal people of Australia.',
+  },
+  {
+    countryCode: 'us',
+    landmarkName: 'grand canyon',
+    description:
+      'The Grand Canyon is a steep-sided canyon carved by the Colorado River in Arizona. It is one of the Seven Natural Wonders of the World and is a popular tourist destination.',
+  },
+  {
+    countryCode: 'gb',
+    landmarkName: 'buckingham palace',
+    description:
+      'Buckingham Palace is the London residence and administrative headquarters of the monarch of the United Kingdom. It is a popular tourist attraction and a symbol of the British monarchy.',
+  },
+  {
+    countryCode: 'es',
+    landmarkName: 'alhambra',
+    description:
+      'The Alhambra is a palace and fortress complex located in Granada, Spain. It is a UNESCO World Heritage site and a popular tourist attraction.',
+  },
+  {
+    countryCode: 'it',
+    landmarkName: 'trevi fountain',
+    description:
+      'The Trevi Fountain is a fountain in the Trevi district in Rome, Italy. It is the largest Baroque fountain in the city and one of the most famous fountains in the world.',
   },
 ];
