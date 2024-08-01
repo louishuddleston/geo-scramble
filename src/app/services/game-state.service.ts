@@ -32,12 +32,13 @@ export class GameStateService {
     return {
       ...gameDataOptions[index],
       scrambledLandmarkName: scrambleWords(
-        gameDataOptions[index].landmarkName,
-        FEATURE_FLAG_DAILY_GAME
+      gameDataOptions[index].landmarkName,
+      FEATURE_FLAG_DAILY_GAME
       ),
       status: 'active',
       guesses: [],
       date: new Date().toISOString().split('T')[0],
+      revealedLetters: 0,
     } as GameState;
   }
 
@@ -54,5 +55,45 @@ export class GameStateService {
   setGameState(gameState: GameState) {
     this.gameState.next(gameState);
     localStorage.setItem('gameState', JSON.stringify(gameState));
+    console.log('New game state set as -->', gameState);
+  }
+
+  revealHint() {
+    const currentState = this.gameState.getValue();
+    if (currentState.guesses.length % 2 === 0 && currentState.guesses.length > 0 && currentState.status === 'active') {
+      if (currentState.revealedLetters < currentState.landmarkName.length) {
+        const updatedState = {
+          ...currentState,
+          revealedLetters: Math.min(currentState.revealedLetters + 1, currentState.landmarkName.length),
+        };
+        this.setGameState(updatedState);
+      }
+    }
+  }
+  
+  getHintedLandmarkName(): string {
+    const currentState = this.gameState.getValue();
+    const landmarkName = currentState.landmarkName;
+    let scrambledName = currentState.scrambledLandmarkName.split('');
+    
+    for (let i = 0; i < currentState.revealedLetters; i++) {
+      if (scrambledName[i] !== landmarkName[i]) {
+        const correctLetter = landmarkName[i];
+        const indexToSwap = scrambledName.indexOf(correctLetter);
+        
+        // Swap the letters
+        [scrambledName[i], scrambledName[indexToSwap]] = [scrambledName[indexToSwap], scrambledName[i]];
+      }
+    }
+    
+    let result = '';
+    for (let i = 0; i < scrambledName.length; i++) {
+      if (i < currentState.revealedLetters) {
+        result += `<span class="text-green-500">${scrambledName[i]}</span>`;
+      } else {
+        result += scrambledName[i];
+      }
+    }
+    return result;
   }
 }

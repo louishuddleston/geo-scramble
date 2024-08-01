@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { countryInfo } from './gameDataHelpers';
 import { GameStateService } from './services/game-state.service';
 import { take, tap } from 'rxjs/operators';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -46,16 +47,29 @@ export class AppComponent implements OnInit {
             guesses: [...gameState.guesses, normalizedGuess],
           };
 
+          this.gameStateService.setGameState(updatedState);
+          
           if (normalizedGuess === gameState.landmarkName) {
             updatedState.status = 'correct';
+
+            const guessInput = document.querySelector('app-guess-input');
+            guessInput?.ariaDisabled;
+            
           } else if (updatedState.guesses.length >= 6) {
             updatedState.status = 'incorrect';
           }
 
-          this.gameStateService.setGameState(updatedState);
+          if (normalizedGuess !== gameState.landmarkName) {
+            this.gameStateService.revealHint();
+          }
+          
         })
       )
       .subscribe();
+  }
+
+  getHintedLandmarkName(): string {
+    return this.gameStateService.getHintedLandmarkName();
   }
 
   newGame() {

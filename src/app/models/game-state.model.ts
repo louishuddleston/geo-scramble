@@ -6,4 +6,5 @@ export interface GameState {
   scrambledLandmarkName: string;
   status: 'correct' | 'incorrect' | 'active';
   guesses: string[];
+  revealedLetters: number;
 }
