@@ -89,7 +89,7 @@ export class GameStateService {
     let result = '';
     for (let i = 0; i < scrambledName.length; i++) {
       if (i < currentState.revealedLetters) {
-        result += `<span class="text-green-500">${scrambledName[i]}</span>`;
+        result += `<span class="text-emerald-400">${scrambledName[i]}</span>`;
       } else {
         result += scrambledName[i];
       }
