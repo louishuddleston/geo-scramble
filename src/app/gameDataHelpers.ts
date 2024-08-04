@@ -153,6 +153,11 @@ export const countryInfo: CountryInfo = {
     flagImage: '',
     mapImage: getMapImagePath('ca'),
   },
+  ae: {
+    countryName: 'United Arab Emirates',
+    flagImage: '',
+    mapImage: getMapImagePath('ae'),
+  },
 };
 
 // TODO: internationalization
