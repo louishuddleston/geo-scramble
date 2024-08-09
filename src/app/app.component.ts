@@ -50,10 +50,6 @@ export class AppComponent implements OnInit {
           
           if (normalizedGuess === gameState.landmarkName) {
             updatedState.status = 'correct';
-
-            const guessInput = document.querySelector('app-guess-input');
-            guessInput?.ariaDisabled;
-            
           } else if (updatedState.guesses.length >= 6) {
             updatedState.status = 'incorrect';
           } else {
