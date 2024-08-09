@@ -55,7 +55,6 @@ export class GameStateService {
   setGameState(gameState: GameState) {
     this.gameState.next(gameState);
     localStorage.setItem('gameState', JSON.stringify(gameState));
-    console.log('New game state set as -->', gameState);
   }
 
   revealHint() {
