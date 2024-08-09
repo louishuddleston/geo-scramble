@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { countryInfo } from './gameDataHelpers';
 import { GameStateService } from './services/game-state.service';
 import { take, tap } from 'rxjs/operators';
-import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -57,12 +56,9 @@ export class AppComponent implements OnInit {
             
           } else if (updatedState.guesses.length >= 6) {
             updatedState.status = 'incorrect';
-          }
-
-          if (normalizedGuess !== gameState.landmarkName) {
+          } else {
             this.gameStateService.revealHint();
           }
-          
         })
       )
       .subscribe();
