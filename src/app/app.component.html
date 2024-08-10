@@ -11,9 +11,7 @@
 
     <div class="my-4 text-center">
       <h1 class="text-xl">Scrambled Landmark Name:</h1>
-      <h1 class="text-5xl text-blue-300">
-        {{ gameState.scrambledLandmarkName }}
-      </h1>
+      <h1 class="text-5xl text-blue-300" [innerHTML]="getHintedLandmarkName()"></h1>
     </div>
 
     <app-guess-input

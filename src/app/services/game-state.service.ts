@@ -32,12 +32,13 @@ export class GameStateService {
     return {
       ...gameDataOptions[index],
       scrambledLandmarkName: scrambleWords(
-        gameDataOptions[index].landmarkName,
-        FEATURE_FLAG_DAILY_GAME
+      gameDataOptions[index].landmarkName,
+      FEATURE_FLAG_DAILY_GAME
       ),
       status: 'active',
       guesses: [],
       date: new Date().toISOString().split('T')[0],
+      revealedLetters: 0,
     } as GameState;
   }
 
@@ -54,5 +55,68 @@ export class GameStateService {
   setGameState(gameState: GameState) {
     this.gameState.next(gameState);
     localStorage.setItem('gameState', JSON.stringify(gameState));
+  }
+
+  revealHint() {
+    const currentState = this.gameState.getValue();
+    const HINT_GUESS_INTERVAL = 2;
+
+    if (currentState.guesses.length % HINT_GUESS_INTERVAL === 0 && currentState.guesses.length > 0 && currentState.status === 'active') {
+      if (currentState.revealedLetters < currentState.landmarkName.length) {
+        const updatedState = {
+          ...currentState,
+          revealedLetters: Math.min(currentState.revealedLetters + 1, currentState.landmarkName.length),
+        };
+        this.setGameState(updatedState);
+      }
+    }
+  }
+  
+  getHintedLandmarkName(): string {
+    const currentState = this.gameState.getValue();
+    const landmarkName = currentState.landmarkName;
+    let scrambledName = currentState.scrambledLandmarkName.split('');
+
+    // Array to track which indices have been revealed
+    const usedIndices: boolean[] = new Array(scrambledName.length).fill(false);
+    
+    for (let i = 0; i < currentState.revealedLetters; i++) {
+      // If the current letter is already in the correct position, mark it as used
+      if (scrambledName[i] === landmarkName[i]) {
+        usedIndices[i] = true;
+        continue;
+      }
+
+      const correctLetter = landmarkName[i];
+      let indexToSwap = -1;
+
+      // Find the next occurrence of the correct letter that hasn't been used yet
+      for (let j = 0; j < scrambledName.length; j++) {
+        if (scrambledName[j] === correctLetter && !usedIndices[j]) {
+          indexToSwap = j;
+          break;
+        }
+      }
+
+      if (indexToSwap !== -1) {
+        // Swap the letters
+        [scrambledName[i], scrambledName[indexToSwap]] = [scrambledName[indexToSwap], scrambledName[i]];
+        usedIndices[indexToSwap] = true;  // Mark the swapped index as used
+      }
+
+      // Mark the current index as used
+      usedIndices[i] = true;
+    }
+
+    // Construct the final hinted name with the appropriate color for revealed letters
+    let result = '';
+    for (let i = 0; i < scrambledName.length; i++) {
+      if (i < currentState.revealedLetters) {
+        result += `<span class="text-emerald-400">${scrambledName[i]}</span>`;
+      } else {
+        result += scrambledName[i];
+      }
+    }
+    return result;
   }
 }

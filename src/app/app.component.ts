@@ -46,16 +46,22 @@ export class AppComponent implements OnInit {
             guesses: [...gameState.guesses, normalizedGuess],
           };
 
+          this.gameStateService.setGameState(updatedState);
+          
           if (normalizedGuess === gameState.landmarkName) {
             updatedState.status = 'correct';
           } else if (updatedState.guesses.length >= 6) {
             updatedState.status = 'incorrect';
+          } else {
+            this.gameStateService.revealHint();
           }
-
-          this.gameStateService.setGameState(updatedState);
         })
       )
       .subscribe();
+  }
+
+  getHintedLandmarkName(): string {
+    return this.gameStateService.getHintedLandmarkName();
   }
 
   newGame() {
